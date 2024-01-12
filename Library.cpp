@@ -4,7 +4,7 @@
 #include <vector> // Provides the implementation of dynamic arrays
 #include <algorithm> // Contains a various functions for performing different operations on sequences
 
-using namespace std;
+using namespace std // Allows you to write code without prefixing elements
 
 class Librarian // Class for Librarian
 {
