@@ -4,7 +4,7 @@
 #include <vector> // Provides the implementation of dynamic arrays
 #include <algorithm> // Contains a various functions for performing different operations on sequences
 
-using namespace std // Allows you to write code without prefixing elements
+using namespace std;
 
 class Librarian // Class for Librarian
 {
@@ -17,17 +17,16 @@ public:
     Librarian() : id(-1) {} // Constructor sets id to -1 to provide default values
 
     void getLibrarianDetails() // Function to get Librarian details 
-
     {
         std::cout << "Enter Librarian's Name: "; // Input for the Librarian's name
-        std::cin >> ws; // 
-        std::getline(cin, name);
+        std::cin >> std::ws; // 
+        std::getline(std::cin, name);
 
         std::cout << "Enter Librarian's Address: "; // Input for the Librarian's address
-        std::getline(cin, address);
+        std::getline(std::cin, address);
 
         std::cout << "Enter Librarian's email: "; // Input for the Librarian's address
-        std::getline(cin, email);
+        std::getline(std::cin, email);
 
 
         std::cout << "Enter Librarian's ID: "; // Input for the Librarian's ID
@@ -69,17 +68,17 @@ public:
 
     Member() : id(-1) {} // Constructor sets id to -1 to provide default values
 
-    void addMember() // Function to add a new member 
+    void addMember() // Function to add a new member (Part1)
     {
         std::cout << "Enter new member's name: "; // Input for the new Member's name
         std::cin.ignore();
-        std::getline(cin, name);
+        std::getline(std::cin, name);
 
         std::cout << "Enter new member's address: "; // Input for the new Member's address
-        std::getline(cin, address);
+        std::getline(std::cin, address);
 
         std::cout << "Enter new member's email: "; // Input for the new Member's email
-        std::getline(cin, email);
+        std::getline(std::cin, email);
 
         id = generateMemberId(); // Generates a member ID
     }
@@ -97,7 +96,7 @@ vector<Book> books;
 
 void readCsv(const std::string &filename) // Function to read book data from a CSV file
 {
-    ifstream file(filename); // Opens an input file using it's specified filename
+    std::ifstream file(filename); // Opens an input file using it's specified filename
 
     if (!file.is_open()) // Checks if the file is successfully opened
     {
@@ -120,7 +119,7 @@ void readCsv(const std::string &filename) // Function to read book data from a C
         std::getline(file, book.authorLastName, ',');
         std::getline(file, book.type, ',');
         file >> book.pageCount >> comma;
-        file >> boolalpha >> book.borrowed >> comma;
+        file >> std::boolalpha >> book.borrowed >> comma;
         file >> book.memberId >> comma;
         file >> book.dueDate;
 
@@ -130,7 +129,7 @@ void readCsv(const std::string &filename) // Function to read book data from a C
     file.close();
 }
 
-void addMember() // Function to add a new member
+void addMember() // Function to add a new member (Part2)
 {
     // Invokes the function to input details for the new member and adds them to the vector of members
     Member newMember;
@@ -174,13 +173,13 @@ void issueBook() // Function to issue a book to a member
     // Displays the issued book details
     std::cout << "Issued Book Details:\n";
     std::cout << "------------------------------------\n";
-    std::cout << "Book ID: " << bookIt->id << endl;
-    std::cout << "Book Name: " << bookIt->name << endl;
-    std::cout << "Author First Name: " << bookIt->authorFirstName << endl;
-    std::cout << "Author Last Name: " << bookIt->authorLastName << endl;
-    std::cout << "Book Type: " << bookIt->type << endl;
-    std::cout << "Page Count: " << bookIt->pageCount << endl;
-    std::cout << "Member ID: " << bookIt->memberId << endl;
+    std::cout << "Book ID: " << bookIt->id << std::endl;
+    std::cout << "Book Name: " << bookIt->name << std::endl;
+    std::cout << "Author First Name: " << bookIt->authorFirstName << std::endl;
+    std::cout << "Author Last Name: " << bookIt->authorLastName << std::endl;
+    std::cout << "Book Type: " << bookIt->type << std::endl;
+    std::cout << "Page Count: " << bookIt->pageCount << std::endl;
+    std::cout << "Member ID: " << bookIt->memberId << std::endl;
     std::cout << "Due Date: " << ctime(&bookIt->dueDate);
     std::cout << "------------------------------------\n";
 }
@@ -212,7 +211,7 @@ void returnBooks() // Function to return a borrowed book
         double daysOverdue = difftime(currentDate, bookIt->dueDate) / (24 * 60 * 60); // Calculates days overdue
         double fineAmount = fineRatePerDay * daysOverdue; // Calculates the total fine based on the fine rate and days overdue
 
-        std::cout << "Fine Amount: $" << fineAmount << endl; // Displays the fine amount
+        std::cout << "Fine Amount: $" << fineAmount << std::endl; // Displays the fine amount
     }
 
     std::cout << "Book with ID " << bookId << " returned successfully.\n"; // Message that book has been successfully returned  
@@ -220,12 +219,12 @@ void returnBooks() // Function to return a borrowed book
     // Displays returned book details
     std::cout << "Returned Book Details:\n";
     std::cout << "------------------------------------\n";
-    std::cout << "Book ID: " << bookIt->id << endl;
-    std::cout << "Book Name: " << bookIt->name << endl;
-    std::cout << "Author First Name: " << bookIt->authorFirstName << endl;
-    std::cout << "Author Last Name: " << bookIt->authorLastName << endl;
-    std::cout << "Book Type: " << bookIt->type << endl;
-    std::cout << "Page Count: " << bookIt->pageCount << endl;
+    std::cout << "Book ID: " << bookIt->id << std::endl;
+    std::cout << "Book Name: " << bookIt->name << std::endl;
+    std::cout << "Author First Name: " << bookIt->authorFirstName << std::endl;
+    std::cout << "Author Last Name: " << bookIt->authorLastName << std::endl;
+    std::cout << "Book Type: " << bookIt->type << std::endl;
+    std::cout << "Page Count: " << bookIt->pageCount << std::endl;
     std::cout << "------------------------------------\n";
 }
 
@@ -239,13 +238,13 @@ void displayBorrowedBooks() // Function to display details of borrowed books
         {
             // Displays book details
             std::cout << "------------------------------------\n";
-            std::cout << "Book ID: " << book.id << endl;
-            std::cout << "Book Name: " << book.name << endl;
-            std::cout << "Author First Name: " << book.authorFirstName << endl;
-            std::cout << "Author Last Name: " << book.authorLastName << endl;
-            std::cout << "Book Type: " << book.type << endl;
-            std::cout << "Page Count: " << book.pageCount << endl;
-            std::cout << "Member ID: " << book.memberId << endl;
+            std::cout << "Book ID: " << book.id << std::endl;
+            std::cout << "Book Name: " << book.name << std::endl;
+            std::cout << "Author First Name: " << book.authorFirstName << std::endl;
+            std::cout << "Author Last Name: " << book.authorLastName << std::endl;
+            std::cout << "Book Type: " << book.type << std::endl;
+            std::cout << "Page Count: " << book.pageCount << std::endl;
+            std::cout << "Member ID: " << book.memberId << std::endl;
             std::cout << "Due Date: " << ctime(&book.dueDate);
             std::cout << "------------------------------------\n";
         }
@@ -260,7 +259,7 @@ int main()
     Librarian librarian; // Gets the details of the Librarian
     librarian.getLibrarianDetails(); 
 
-    std::cout << "LionX Library" << endl; // Library name header
+    std::cout << "LionX Library" << std::endl; // Library name header
     int option;
 
     librarian.displayWelcomeMessage(); // Welcome message shown to Librarian
