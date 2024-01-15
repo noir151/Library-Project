@@ -11,8 +11,11 @@ Book.o: Book.cpp Book.h
 	g++ -c Book.cpp
 
 Member.o: Member.cpp Member.h
-	g++ -c Member.cpp 
+	g++ -c Member.cpp
 
 LibrarianFunctions.o: LibrarianFunctions.cpp LibrarianFunctions.h
 	g++ -c LibrarianFunctions.cpp
+
+clean:
+	rm -f *.o library.exe
 
